@@ -49,6 +49,8 @@ var height = video.offsetHeight;
 console.log(width, height);
 
 document.getElementById("picture").addEventListener("click", function() {
+	canvas.width = width;
+	canvas.height = width;
 	context.drawImage(video, 0, 0, width, height);
 	var imgData = canvas.toDataURL('image/png');
 
@@ -60,9 +62,9 @@ document.getElementById("picture").addEventListener("click", function() {
 		src: imgData // or 'data:image/jpg;base64,' + data
 	}, function(result) {
 		if (result.codeResult) {
-			console.log("result", result.codeResult.code);
+			alert("result", result.codeResult.code);
 		} else {
-			console.log("not detected");
+			alert("not detected");
 		}
 	});
 });
