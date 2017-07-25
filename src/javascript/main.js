@@ -1,8 +1,10 @@
+'use strict';
+
 var video;
 var canvas = document.getElementById('stream');
 var context = canvas.getContext('2d');
-var width, height;
-var imageData;
+var imgData;
+var tmp;
 
 $(function() {
 	var handler = {
@@ -20,6 +22,7 @@ $(function() {
 				video = document.querySelector('#video > video');
 				canvas.width = video.offsetWidth;
 				canvas.height = video.offsetHeight;
+
 			});
 		},
 
@@ -29,18 +32,25 @@ $(function() {
 			document.getElementById("picture").addEventListener("click", function(e) {
 				context.drawImage(video, 0, 0);
 				imgData = canvas.toDataURL('image/png');
+				console.log(tmp === imgData);
+
+				tmp = imgData;
 				handler.decode(imgData);
+				//handler.decode(imgData);
 			});
 		},
 
-		decode: function(src) {
+		decode: function(_src) {
 			var self = this;
-			config = $.extend({}, self.orconfig, {
-				src: src
+			let config = $.extend({}, self.orconfig, {
+				src: _src
 			});
 			Quagga.decodeSingle(config, function(result) {
-				if (result.codeResult) {
-					alert("result", result.codeResult.code);
+				if (result === undefined) {
+					alert("not code");
+				} else if (result.codeResult) {
+					alert("result" + String(result.codeResult.code));
+					alert(result.codeResult.code);
 				} else {
 					alert("not detected");
 				}
@@ -173,11 +183,4 @@ $(function() {
 		}
 	});
 
-	Quagga.onDetected(function(result) {
-		if (result.codeResult) {
-			console.log("result", result.codeResult.code);
-		} else {
-			console.log("not detected");
-		}
-	});
 });
