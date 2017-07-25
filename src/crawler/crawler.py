@@ -46,3 +46,9 @@ for t in soup.select('.rating_num'):
     print t.string.strip()
 for t in soup.select(".intro p"):
     print t.get_text()
+
+for t in soup.select("#db-rec-section dl"):
+    if t['class'] == ['']:
+        print t.dt.a['href']
+        print t.dt.a.img['src']
+        print t.dd.a.get_text();
