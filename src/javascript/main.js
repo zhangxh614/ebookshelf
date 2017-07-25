@@ -50,6 +50,7 @@ $(function() {
 					alert("not code");
 				} else if (result.codeResult) {
 					alert("result" + String(result.codeResult.code));
+					alert(result.codeResult.code);
 				} else {
 					alert("not detected");
 				}
