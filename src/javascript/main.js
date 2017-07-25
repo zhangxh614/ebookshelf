@@ -22,7 +22,6 @@ $(function() {
 				video = document.querySelector('#video > video');
 				canvas.width = video.offsetWidth;
 				canvas.height = video.offsetHeight;
-
 			});
 		},
 
@@ -37,7 +36,7 @@ $(function() {
 				tmp = imgData;
 				handler.decode(imgData);
 				//handler.decode(imgData);
-			});
+			});	
 		},
 
 		decode: function(_src) {
@@ -92,7 +91,7 @@ $(function() {
 
 		orconfig: {
 			inputStream: {
-				size: 800,
+				size: 640,
 				singleChannel: false
 			},
 			locator: {

@@ -5,15 +5,18 @@
 	<meta charset="UTF-8">
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="./src/css/main.css" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 	<script type="text/javascript" src="./lib/jquery/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="./lib/quaggaJS/dist/quagga.js"></script>
 </head>
 
 <body>
 	<div id="main">
+		<div class="controls">
+			<button id='picture'>picture</button>
+		</div>
 		<div id="video"></div>
 		<div id="result">
-			<button id='picture'>PICTURE</button>
 			<canvas id="stream"></canvas>
 			<p id="ans"></p>
 		</div>
