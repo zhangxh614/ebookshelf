@@ -36,7 +36,15 @@ $(function() {
 				tmp = imgData;
 				handler.decode(imgData);
 				//handler.decode(imgData);
-			});	
+			});
+
+			document.getElementById("push").addEventListener("change", function(e) {
+				var input = document.querySelector(".controls input[type=file]");
+				if (input.files && input.files.length) {
+					handler.decode(URL.createObjectURL(input.files[0]));
+				}
+			});
+
 		},
 
 		decode: function(_src) {
