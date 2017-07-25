@@ -40,9 +40,9 @@ $(function() {
 			});
 			Quagga.decodeSingle(config, function(result) {
 				if (result.codeResult) {
-					console.log("result", result.codeResult.code);
+					alert("result", result.codeResult.code);
 				} else {
-					console.log("not detected");
+					alert("not detected");
 				}
 			});
 		},
