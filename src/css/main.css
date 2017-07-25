@@ -14,8 +14,9 @@
 }
 
 
-#stream {	
-		width:640px;
-		height:480px;
+#stream {
+        position: absolute;
+        width: 640px;
+        height: 480px;
         float: left;
 }
