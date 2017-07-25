@@ -3,7 +3,7 @@
 import urllib2
 from bs4 import BeautifulSoup
 import sys
-reload(sys) # 这一行和下一行我也不知道为什么要这样，不过whatever，这样不报错了
+reload(sys) # 这一行和下一行我也不知道为什么要这样，不过whatever，这样不报错�
 sys.setdefaultencoding('utf-8') 
 
 #  enable_proxy = True
@@ -61,3 +61,9 @@ for t in soup.select(".intro p"):
     print t.get_text(),
 print '"'
 print '}'
+
+for t in soup.select("#db-rec-section dl"):
+    if t['class'] == ['']:
+        print t.dt.a['href']
+        print t.dt.a.img['src']
+        print t.dd.a.get_text();

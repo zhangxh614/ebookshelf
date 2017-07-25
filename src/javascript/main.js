@@ -22,7 +22,6 @@ $(function() {
 				video = document.querySelector('#video > video');
 				canvas.width = video.offsetWidth;
 				canvas.height = video.offsetHeight;
-
 			});
 		},
 
@@ -38,6 +37,14 @@ $(function() {
 				handler.decode(imgData);
 				//handler.decode(imgData);
 			});
+
+			document.getElementById("push").addEventListener("change", function(e) {
+				var input = document.querySelector(".controls input[type=file]");
+				if (input.files && input.files.length) {
+					handler.decode(URL.createObjectURL(input.files[0]));
+				}
+			});
+
 		},
 
 		decode: function(_src) {
@@ -92,7 +99,7 @@ $(function() {
 
 		orconfig: {
 			inputStream: {
-				size: 800,
+				size: 640,
 				singleChannel: false
 			},
 			locator: {
