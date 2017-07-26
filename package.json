@@ -25,7 +25,8 @@
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.2.1",
-    "nunjucks": "^3.0.1"
+    "nunjucks": "^3.0.1",
+    "react": "^15.6.1"
   },
   "devDependencies": {
     "babel": "^6.23.0",
