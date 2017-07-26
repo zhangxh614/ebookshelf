@@ -107,8 +107,32 @@ $(function() {
 			},
 			locate: true,
 			src: null
-		}
+		},
 
+		handleData: function(json) {
+			fetch("/crawler", {
+					method: "POST",
+					body: json
+				})
+				.then(function(res) {
+					alert(res);
+					ReactDOM.render(
+						<article class="post">
+					<h4 class="post-title">{res["name"]}</h4>
+					<img class="post-photo" src={res['image'][0]['img']}/>
+					<p class="post-info">{res['info']}</p>
+					<p class="post-number">{res['rating_num']}</p>
+					<div class="post-list">{
+							res['recommend'].map(function(item) {
+									return <a src={item['link']}>{item['name']}</a>
+							})
+					}
+					</div>
+					</article>,
+						document.getElementById('result');
+					);
+				});
+		}
 	};
 
 	handler.init();
