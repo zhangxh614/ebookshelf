@@ -57,9 +57,12 @@ for t in soup.select('.rating_num'):
     print '"评分',
     print t.string.strip() + '",'
 print '"intro": "',
-for t in soup.select(".intro p"):
-    print t.get_text(),
-print '",'
+tmp=''
+for i in range(len(soup.select(".intro p"))):
+    if i==4:
+        break;
+    tmp=tmp+soup.select(".intro p")[i].get_text().replace("\n",' ')
+print tmp+'",'
 recommend_first = True
 print '"recommend": [',
 for t in soup.select("#db-rec-section dl"):
