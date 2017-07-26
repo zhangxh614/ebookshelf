@@ -31,9 +31,9 @@ var getCrawledData = async (ctx, next) => { // 响应post的json数据{"isbn":nu
         data = await crawlWrapper(_isbn);
         ctx.responce.body = JSON.parse(data);
     } catch (err) {
-        console.log(err);
+        console.log(err.message);
     }
 }
 
-module.exports({"GET /": mainPage,
-                "POST /crawl": getCrawledData});
+module.exports = {"GET /": mainPage,
+                "POST /crawl": getCrawledData};

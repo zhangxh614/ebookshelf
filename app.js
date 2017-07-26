@@ -35,9 +35,11 @@ router.get("/", async(ctx, next) => { // router中间件注册'GET /'请求
     });
 });
 
+require('./server/register_router')(router, 'route/');
+
 app.use(router.routes());
 
-console.log(__dirname);
+// console.log(__dirname);
 
 app.use(ResponseStatic('\/', __dirname)); // 添加响应'GET css/js'请求的中间件
 
