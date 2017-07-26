@@ -32,6 +32,7 @@ $(function() {
 				canvas.height = video.offsetHeight;
 				context.drawImage(video, 0, 0);
 				imgData = canvas.toDataURL('image/png');
+				self.decode(imgData);
 			});
 		},
 
