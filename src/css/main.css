@@ -98,6 +98,8 @@ body {
         position: absolute;
         float: left;
         top: 490px;
+		min-width:640px;
+		min-height:480px;
 }
 
 h3.subtitle {
@@ -117,7 +119,7 @@ video.drawingBuffer {
 }
 
 
-@media (max-width:1300px) {
+@media (max-width:1200px) {
         #video canvas,
         video {
                 width: 100%;
