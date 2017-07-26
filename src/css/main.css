@@ -4,7 +4,6 @@
         border: 0;
 }
 
-
 html,
 body {
         color: #505050;
@@ -13,10 +12,6 @@ body {
         position: relative;
         font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "WenQuanYi Micro Hei", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
 }
-
-
-
-
 
 
 /* header */
@@ -33,10 +28,6 @@ body {
         background-size: cover;
         background-image: url(../../image/background.jpg)
 }
-
-
-
-
 
 
 /* tab */
@@ -81,10 +72,6 @@ body {
 }
 
 
-
-
-
-
 /* navbar-header */
 
 .navbar-header {
@@ -103,10 +90,6 @@ body {
                 display: none;
         }
 }
-
-
-
-
 
 
 /* scan */
@@ -134,7 +117,7 @@ video.drawingBuffer {
 }
 
 
-@media (max-width:1200px) {
+@media (max-width:1300px) {
         #video canvas,
         video {
                 width: 100%;
