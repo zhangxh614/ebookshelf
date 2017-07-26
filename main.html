@@ -1,27 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
 	<meta charset="UTF-8">
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="./src/css/main.css" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Ebookself</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="./lib/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./lib/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./src/css/main.css" />
 	<script type="text/javascript" src="./lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="./lib/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./lib/quaggaJS/dist/quagga.js"></script>
 </head>
 
 <body>
-	<div id="main">
-		<div class="controls">
-			<button id='picture'>picture</button>
-			<input id="push" type="file" accept="image/*" capture="camera"/>
+	<header class="head">
+		<div class="container">
+			<div class="row"></div>
 		</div>
-		<div id="video"></div>
-		<div id="result">
-			<canvas id="stream"></canvas>
-			<p id="ans"></p>
+	</header>
+	<nav class="navigation">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="navbar-header">
+						<span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
+						<i class="fa fa-bars" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="navbar-collapse collapse" id="main-menu" aria-expanded="false">
+						<ul class="menu">
+							<li role="presentation">
+								<a href="/">首页</a>
+							</li>
+							<li class="nav-current" role="presentation">
+								<a href="/">实时扫描</a>
+							</li>
+							<li role="presentation">
+								<a href="">上传图片</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
+		</div>
+	</nav>
+	<section id="scan" class="content-wrap">
+		<div class="container">
+			<div class="row">
+				<aside class="col-md-1 sidebar">
+					<div class="controls">
+						<button id="picture" type="button" class="btn btn-default">Picture</button>
+					</div>
+				</aside>
+				<main class="col-md-11 main-content">
+					<div id="video"></div>
+					<div id="result">
+						<canvas id="photo"></canvas>
+						<p id="ans"></p>
+					</div>
+				</main>
+			</div>
+		</div>
+	</section>
 
 	<script type="text/javascript" src="./src/javascript/main.js"></script>
 </body>

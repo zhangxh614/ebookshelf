@@ -1,7 +1,7 @@
 'use strict';
 
 var video;
-var canvas = document.getElementById('stream');
+var canvas = document.getElementById('photo');
 var context = canvas.getContext('2d');
 var imgData;
 var tmp;
@@ -38,12 +38,12 @@ $(function() {
 				//handler.decode(imgData);
 			});
 
-			document.getElementById("push").addEventListener("change", function(e) {
-				var input = document.querySelector(".controls input[type=file]");
-				if (input.files && input.files.length) {
-					handler.decode(URL.createObjectURL(input.files[0]));
-				}
-			});
+			// document.getElementById("push").addEventListener("change", function(e) {
+			// var input = document.querySelector(".controls input[type=file]");
+			// if (input.files && input.files.length) {
+			// handler.decode(URL.createObjectURL(input.files[0]));
+			// }
+			// });
 
 		},
 
@@ -56,8 +56,7 @@ $(function() {
 				if (result === undefined) {
 					alert("not code");
 				} else if (result.codeResult) {
-					alert("result" + String(result.codeResult.code));
-					alert(result.codeResult.code);
+					alert("result: " + String(result.codeResult.code));
 				} else {
 					alert("not detected");
 				}
