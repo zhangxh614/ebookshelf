@@ -85,54 +85,21 @@ body {
         cursor: pointer;
 }
 
+
+/* controls&result */
 @media (min-width: 768px) {
         .nav-toggle-button {
                 display: none;
         }
 }
 
-
-/* scan */
-
-#photo {
-        position: absolute;
-        float: left;
-        top: 490px;
-		min-width:640px;
-		min-height:480px;
-}
-
 h3.subtitle {
         border-bottom: 2px solid #e1e1e1;
 }
 
-#video canvas,
-video {
-        float: left;
-        width: 640px;
-        height: 480px;
-}
-
-#video canvas.drawingBuffer,
-video.drawingBuffer {
-        display: none;
-}
-
-
 @media (max-width:1200px) {
-        #video canvas,
-        video {
-                width: 100%;
-                height: 100%;
-        }
-
-        #image {
-                display: none;
-        }
-		
         .controls {
                 padding-bottom: 5px;
                 margin-bottom: 10px;
         }
 }
-

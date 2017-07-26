@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="./lib/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./lib/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./src/css/main.css" />
+        <link rel="stylesheet" type="text/css" href="./src/css/upload.css" />
 	<script type="text/javascript" src="./lib/jquery/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="./lib/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./lib/quaggaJS/dist/quagga.js"></script>
@@ -32,13 +33,13 @@
 					<div class="navbar-collapse collapse" id="main-menu" aria-expanded="false">
 						<ul class="menu">
 							<li role="presentation">
-								<a href="/">首页</a>
-							</li>
-							<li class="nav-current" role="presentation">
-								<a href="/">实时扫描</a>
+								<a href="/main.html">首页</a>
 							</li>
 							<li role="presentation">
-								<a href="">上传图片</a>
+								<a href="./scan.html">实时扫描</a>
+							</li>
+							<li class="nav-current" role="presentation">
+								<a href="./upload.html">上传图片</a>
 							</li>
 						</ul>
 					</div>
@@ -47,20 +48,18 @@
 		</div>
 		</div>
 	</nav>
-	<section id="scan" class="content-wrap">
+	<section id="upload" class="content-wrap">
 		<div class="container">
 			<div class="row">
-				<aside class="col-md-2 sidebar">
+				<aside class="col-md-3 sidebar">
 					<div class="controls">
 						<h3 class="subtitle">Control Bar</h3>
-						<button id="picture" type="button" class="btn btn-default">Picture</button>
+						<input type="file" accept="image/*" capture="camera" />
+						<button id="rerun" type="button" class="btn btn-default">Rerun</button>
 					</div>
 				</aside>
-				<main class="col-md-7 main-content">
-					<div id="video"></div>
-					<div id="image">
-						<canvas id="photo"></canvas>
-					</div>
+				<main class="col-md-6 main-content">
+					<div id="interactive" class="viewport"></div>
 				</main>
 				<aside class="col-md-3 sidebar">
 					<h3 class="subtitle">Result</h3>
@@ -71,7 +70,7 @@
 		</div>
 	</section>
 
-	<script type="text/javascript" src="./src/javascript/main.js"></script>
+	<script type="text/javascript" src="./src/javascript/upload.js"></script>
 </body>
 
 </html>
