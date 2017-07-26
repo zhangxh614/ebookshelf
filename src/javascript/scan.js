@@ -46,11 +46,7 @@ $(function() {
 					alert("Not code in the picture.");
 				} else if (result.codeResult) {
 					let json = '{\"ISBN\":\"' + result.codeResult.code + '\"}';
-					alert(json);
-					$.ajax({
-						'url': '\\crawler',
-						'type': 'post'
-					});
+					self.handleData(json);
 				} else {
 					alert("Not detected");
 				}
@@ -110,27 +106,34 @@ $(function() {
 		},
 
 		handleData: function(json) {
-			fetch("/crawler", {
+			fetch("/crawl", {
 					method: "POST",
 					body: json
 				})
 				.then(function(res) {
-					alert(res);
+					//alert(res);
 					ReactDOM.render(
-						<article class="post">
-					<h4 class="post-title">{res["name"]}</h4>
-					<img class="post-photo" src={res['image'][0]['img']}/>
-					<p class="post-info">{res['info']}</p>
-					<p class="post-number">{res['rating_num']}</p>
-					<div class="post-list">{
-							res['recommend'].map(function(item) {
-									return <a src={item['link']}>{item['name']}</a>
-							})
-					}
-					</div>
-					</article>,
-						document.getElementById('result');
-					);
+						<div>
+								<article className="post">
+									<h4 className="post-title">{res['name']}</h4>
+									<img className="post-photo" src={res['images'][0]['img']}/>
+									<p className="post-info">{res['info']}</p>
+									<p className="post-intro">{res['intro']}</p>
+									<strong className="post-number">{res['rating_num']}</strong>
+								</article>
+									<h3 className="subtitle">相关书籍</h3>
+								<ul className="post-list"> {
+									res['recommend'].map(function(item) {
+										return <li className="col-sm-6 col-md-4 col-lg-3">
+													<img className="other" src={item['img']}/>
+													<a className="link" href={item['link']}>{item['name']}</a>
+												</li>
+									})
+								}
+								</ul>
+						</div>,
+						document.getElementById('result')
+					)
 				});
 		}
 	};

@@ -87,6 +87,7 @@ body {
 
 
 /* controls&result */
+
 @media (min-width: 768px) {
         .nav-toggle-button {
                 display: none;
@@ -101,5 +102,31 @@ h3.subtitle {
         .controls {
                 padding-bottom: 5px;
                 margin-bottom: 10px;
+        }
+}
+
+
+/* result bar */
+
+#result .post-photo {
+        width: 100%;
+}
+
+#result .post-list li {
+        position: relative;
+        list-style: none;
+        margin-bottom: 20px;
+        text-align: center;
+        height: 150px;
+}
+
+.other {
+        width: 100%;
+        margin-bottom: 10px;
+}
+
+@media(max-width:991px) {
+        #result .post-list li {
+                height: auto;
         }
 }

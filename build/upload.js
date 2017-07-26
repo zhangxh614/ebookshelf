@@ -1,37 +1,38 @@
-$(function() {
+"use strict";
+
+$(function () {
 	var handler = {
-		init: function() {
+		init: function init() {
 			handler.addEventListeners();
 		},
 
-		addEventListeners: function() {
+		addEventListeners: function addEventListeners() {
 			var self = this;
 
-			document.querySelector(".controls input[type=file]").addEventListener("change", function(e) {
+			document.querySelector(".controls input[type=file]").addEventListener("change", function (e) {
 				if (e.target.files && e.target.files.length) {
 					handler.decode(URL.createObjectURL(e.target.files[0]));
 				}
 			});
 
-			document.querySelector("#rerun").addEventListener("click", function(e) {
+			document.querySelector("#rerun").addEventListener("click", function (e) {
 				var input = document.querySelector(".controls input[type=file]");
 				if (input.files && input.files.length) {
 					handler.decode(URL.createObjectURL(input.files[0]));
 				}
 			});
-
 		},
 
-		decode: function(_src) {
+		decode: function decode(_src) {
 			var self = this;
-			let config = $.extend({}, self.state, {
+			var config = $.extend({}, self.state, {
 				src: _src
 			});
-			Quagga.decodeSingle(config, function(result) {
+			Quagga.decodeSingle(config, function (result) {
 				if (result === undefined) {
 					alert("Not code in the picture.");
 				} else if (result.codeResult) {
-					let json = '{\"ISBN\":\"' + result.codeResult.code + '\"}';
+					var json = '{\"ISBN\":\"' + result.codeResult.code + '\"}';
 					self.handleData(json);
 				} else {
 					alert("Not detected");
@@ -57,38 +58,64 @@ $(function() {
 			src: null
 		},
 
-		handleData: function(json) {
+		handleData: function handleData(json) {
 			fetch("/crawl", {
-					method: "POST",
-					body: json
-				})
-				.then(function(res) {
-					//alert(res);
-					ReactDOM.render(
-						<div>
-								<article className="post">
-									<h4 className="post-title">{res['name']}</h4>
-									<img className="post-photo" src={res['images'][0]['img']}/>
-									<p className="post-info">{res['info']}</p>
-									<p className="post-intro">{res['intro']}</p>
-									<strong className="post-number">{res['rating_num']}</strong>
-								</article>
-									<h3 className="subtitle">相关书籍</h3>
-								<ul className="post-list">{
-									res['recommend'].map(function(item) {
-										return <li className="col-sm-6 col-md-4 col-lg-3">
-													<img className="other" src={item['img']}/>
-													<a className="link" href={item['link']}>{item['name']}</a>
-												</li>
-									})
-								}
-								</ul>
-						</div>,
-						document.getElementById('result')
+				method: "POST",
+				body: json
+			}).then(function (res) {
+				//alert(res);
+				ReactDOM.render(React.createElement(
+					"div",
+					null,
+					React.createElement(
+						"article",
+						{ className: "post" },
+						React.createElement(
+							"h4",
+							{ className: "post-title" },
+							res['name']
+						),
+						React.createElement("img", { className: "post-photo", src: res['images'][0]['img'] }),
+						React.createElement(
+							"p",
+							{ className: "post-info" },
+							res['info']
+						),
+						React.createElement(
+							"p",
+							{ className: "post-intro" },
+							res['intro']
+						),
+						React.createElement(
+							"strong",
+							{ className: "post-number" },
+							res['rating_num']
+						)
+					),
+					React.createElement(
+						"h3",
+						{ className: "subtitle" },
+						"\u76F8\u5173\u4E66\u7C4D"
+					),
+					React.createElement(
+						"ul",
+						{ className: "post-list" },
+						res['recommend'].map(function (item) {
+							return React.createElement(
+								"li",
+								{ className: "col-sm-6 col-md-4 col-lg-3" },
+								React.createElement("img", { className: "other", src: item['img'] }),
+								React.createElement(
+									"a",
+									{ className: "link", href: item['link'] },
+									item['name']
+								)
+							);
+						})
 					)
-				});
+				), document.getElementById('result'));
+			});
 		}
-
 
 	};
 
@@ -96,11 +123,11 @@ $(function() {
 
 	function calculateRectFromArea(canvas, area) {
 		var canvasWidth = canvas.width,
-			canvasHeight = canvas.height,
-			top = parseInt(area.top) / 100,
-			right = parseInt(area.right) / 100,
-			bottom = parseInt(area.bottom) / 100,
-			left = parseInt(area.left) / 100;
+		    canvasHeight = canvas.height,
+		    top = parseInt(area.top) / 100,
+		    right = parseInt(area.right) / 100,
+		    bottom = parseInt(area.bottom) / 100,
+		    left = parseInt(area.left) / 100;
 
 		top *= canvasHeight;
 		right = canvasWidth - canvasWidth * right;
@@ -115,17 +142,17 @@ $(function() {
 		};
 	}
 
-	Quagga.onProcessed(function(result) {
+	Quagga.onProcessed(function (result) {
 		var drawingCtx = Quagga.canvas.ctx.overlay,
-			drawingCanvas = Quagga.canvas.dom.overlay,
-			area;
+		    drawingCanvas = Quagga.canvas.dom.overlay,
+		    area;
 
 		if (result) {
 			if (result.boxes) {
 				drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute("width")), parseInt(drawingCanvas.getAttribute("height")));
-				result.boxes.filter(function(box) {
+				result.boxes.filter(function (box) {
 					return box !== result.box;
-				}).forEach(function(box) {
+				}).forEach(function (box) {
 					Quagga.ImageDebug.drawPath(box, {
 						x: 0,
 						y: 1
@@ -163,5 +190,4 @@ $(function() {
 			}
 		}
 	});
-
 });
