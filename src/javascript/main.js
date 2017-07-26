@@ -68,10 +68,10 @@ $(function() {
 				type: "LiveStream",
 				constraints: {
 					width: {
-						min: 640
+						max: 640
 					},
 					height: {
-						min: 480
+						max: 480
 					},
 					facingMode: "environment",
 					aspectRatio: {
