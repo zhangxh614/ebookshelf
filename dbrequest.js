@@ -19,6 +19,5 @@ var modify = async(ctx, next) => {
 module.exports = {
     'POST /db/add': add,
     'DELETE /db': remove,
-    'POST /db/query': query,
-    'POST'
+    'POST /db/query': query
 }
