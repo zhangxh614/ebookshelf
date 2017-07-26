@@ -2,7 +2,9 @@
 
 import urllib2
 from bs4 import BeautifulSoup
-
+import sys
+reload(sys) # 这一行和下一行我也不知道为什么要这样，不过whatever，这样不报错了
+sys.setdefaultencoding('utf-8') 
 
 #  enable_proxy = True
 #  proxy_handler = urllib2.ProxyHandler({"http" : 'http://some-proxy.com:8080'})
@@ -14,7 +16,7 @@ from bs4 import BeautifulSoup
 #  urllib2.install_opener(opener)
 
 
-isbn=input('ISBN:')
+isbn=sys.argv[1]
 request=urllib2.Request("https://book.douban.com/subject_search?search_text="+str(isbn)+"&cat=1001")
 try:
     response = urllib2.urlopen(request,timeout=100)
@@ -36,19 +38,38 @@ ans=response.read()
 soup = BeautifulSoup(ans,"lxml")
 
 
-print soup.select("#wrapper h1 span")[0].get_text();
+print '{' + '"name": "' + soup.select("#wrapper h1 span")[0].get_text() + '",'
+print '"images": [',
+_first = True
 for t in soup.select(".nbg"):
-    print t['href']
-for t in soup.select("#info"):
-    print t.get_text().replace(" ","").replace("\n",' ');
+    if not _first:
+        print ',',
+    else:
+        _first = False
+        print '{"img": "' + t['href'] + '"}',
+        
+print '],'
+print '"info": ',
+for t in soup.select("#info"): 
+    print '"' + t.get_text().replace(" ","").replace("\n",' ') + '",'
+print '"rating_num":',
 for t in soup.select('.rating_num'):
-    print '评分',
-    print t.string.strip()
+    print '"评分',
+    print t.string.strip() + '",'
+print '"intro": "',
 for t in soup.select(".intro p"):
-    print t.get_text()
-
+    print t.get_text(),
+print '",'
+recommend_first = True
+print '"recommend": [',
 for t in soup.select("#db-rec-section dl"):
     if t['class'] == ['']:
-        print t.dt.a['href']
-        print t.dt.a.img['src']
-        print t.dd.a.get_text();
+        if recommend_first: 
+            recommend_first = False
+        else: 
+            print ','
+        print '{ "link": "' + t.dt.a['href'] + '",',
+        print '"img": "' + t.dt.a.img['src'] + '",',
+        print '"name": "' + t.dd.a.get_text().replace(" ","").replace("\n","") + '"}',
+print ']',
+print '}'
