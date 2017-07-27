@@ -3,7 +3,6 @@
  * 用于将route文件夹中的导出的模块响应注册到router上
  */
 
-
 const fs = require('fs');
 
 function RegisterOneFile(router, dir) {
