@@ -4,7 +4,7 @@ var add = async(ctx, next) => {
     var newUser = new UserModel(ctx.request.body);
     UserModel.findOne({usrName: newUser.usrName}, function(err, usr) {
         if (err) {
-            ctx.response.body = {message: 'user name have been used'};
+            ctx.response.body = {message: 'user name have been used.'};
             console.log(`user name ${ctx.request.usrName} have been used`);
         } else {
             usr.save((err, docs) => {
@@ -28,7 +28,7 @@ var login = async(ctx, next) => {
             ctx.response.body = {message: 'failed'};
             console.log('failed login');
         } else {
-            ctx.response.body = usr;
+            ctx.response.body = {message:'successfully login'};
             console.log('successfully login');
         }
     })
@@ -50,6 +50,6 @@ var modify = async(ctx, next) => {
 
 module.exports = {
     'POST /db/add': add,
-    'DELETE /db/login': login,
+    'POST /db/login': login,
     'POST /db/mdf': modify
 }
