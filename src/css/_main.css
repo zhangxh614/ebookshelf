@@ -22,3 +22,11 @@
         left: 0;
         bottom: -1px;
 }
+
+.input-group {
+		margin-bottom:5px;
+}
+
+span.heading {
+		margin-bottom:10px;
+}
