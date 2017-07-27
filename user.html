@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Ebookself</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="./src/css/common.css" />
+	<link rel="stylesheet" type="text/css" href="./src/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="./src/css/user.css" />
+	<script src="https://cdn.bootcss.com/react/15.6.1/react.min.js"></script>
+	<script src="https://cdn.bootcss.com/react/15.6.1/react-dom.min.js"></script>
+	<script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<nav class="navigation">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="navbar-header">
+						<span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
+						<i class="fa fa-bars" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="navbar-collapse collapse" id="main-menu" aria-expanded="false">
+						<ul class="menu">
+							<li class="nav-current" role="presentation">
+								<a href="./main.html">首页</a>
+							</li>
+							<li id='avatar' role="presentation">
+								<i class="fa fa-user"></i>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+	</nav>
+	<section id="mainpage" class="content-wrap">
+		<div class="container">
+			<div class="row">
+				<h2>已扫书籍</h2>
+				<div id="booklist">
+				</div>
+			</div>
+		</div>
+		</div>
+	</section>
+	<a href="#top" id="back-to-top">
+			<i class="fa fa-angle-up"></i>
+	</a>
+	<script type="text/javascript" src="./build/common.js"></script>
+	<script type="text/javascript" src="./build/user.js"></script>
+</body>
+
+</html>

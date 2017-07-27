@@ -83,7 +83,7 @@ $(function() {
 									<h3 className="subtitle">相关书籍</h3>
 								<ul className="post-list">{
 									res['recommend'].map(function(item) {
-										return <li className="col-sm-6 col-md-4 col-lg-3">
+										return <li className="col-xs-6 col-md-4 col-lg-3">
 													<img className="other" src={item['img']}/>
 													<a className="link" target = "_blank" href={item['link']}>{item['name']}</a>
 												</li>
