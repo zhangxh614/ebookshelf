@@ -60,7 +60,7 @@ $(function() {
 		},
 
 		handleData: function(json) {
-			fetch("/crawl", {
+			fetch("/api/crawl", {
 					method: "POST",
 					body: json,
 					headers: {
@@ -69,7 +69,7 @@ $(function() {
 				})
 				.then(function(resq) {
 					//alert(res);
-					var res = resq.json().then(function(res) {
+					resq.json().then(function(res) {
 						ReactDOM.render(
 							<div>
 
