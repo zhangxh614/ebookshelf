@@ -9,7 +9,7 @@
 	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="./src/css/main.css" />
-	<link rel="stylesheet" type="text/css" href="./src/css/scan.css" />
+	<link rel="stylesheet" type="text/css" href="./src/css/_main.css" />
 	<script src="https://cdn.bootcss.com/react/15.6.1/react.min.js"></script>
 	<script src="https://cdn.bootcss.com/react/15.6.1/react-dom.min.js"></script>
 	<script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
@@ -35,10 +35,10 @@
 					</div>
 					<div class="navbar-collapse collapse" id="main-menu" aria-expanded="false">
 						<ul class="menu">
-							<li role="presentation">
+							<li class="nav-current" role="presentation">
 								<a href="./main.html">首页</a>
 							</li>
-							<li class="nav-current" role="presentation">
+							<li role="presentation">
 								<a href="./scan.html">实时扫描</a>
 							</li>
 							<li role="presentation">
@@ -51,31 +51,38 @@
 		</div>
 		</div>
 	</nav>
-	<section id="scan" class="content-wrap">
+	<section id="mainpage" class="content-wrap">
 		<div class="container">
 			<div class="row">
-				<aside class="col-md-2 sidebar">
-					<div class="controls">
-						<h3 class="subtitle">Control Bar</h3>
-						<button id="picture" type="button" class="btn btn-default">Picture</button>
-					</div>
-				</aside>
-				<main class="col-md-6 main-content">
-					<div id="video"></div>
-					<div id="image">
-						<canvas id="photo"></canvas>
+				<main class="col-md-7 text-center text-md-left main-content">
+					<div class="intro">
+						<h3 class="subtitle">Introduction</h3>
 					</div>
 				</main>
-				<aside class="col-md-4 sidebar">
-					<h3 class="subtitle">Result</h3>
-					<ul id="result">
-					</ul>
+				<aside class="mx-auto col-sm-8 col-md-5 hide-sm rounded-1 bg-gray-light pt-4 pb-5">
+					<form id="login-form" class="form-horizontal" action="#" onsubmit="alert('Hello ' + login-form.name.value +'!');return true;">
+						<span class="heading">用户登录</span>
+						<div class="input-group">
+							<span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>
+							<input name="login-name" type="text" class="form-control required" placeholder="Username" aria-describedby="basic-addon1">
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon" id="basic-addon2"><i class="fa fa-lock"></i></span>
+							<input name="pwd" type="passward" class="form-control required" placeholder="Passward" aria-describedby="basic-addon2">
+							<span class="input-group-btn">
+									<button id="login-submit" type="submit" class="btn btn-default" >Go!</button>
+							</span>
+						</div>
 				</aside>
 			</div>
 		</div>
 	</section>
 
-	<script type="text/javascript" src="./build/scan.js"></script>
+	<a href="#top" id="back-to-top">
+			<i class="fa fa-angle-up"></i>
+	</a>
+
+	<script type="text/javascript" src="./src/javascript/_main.js"></script>
 </body>
 
 </html>

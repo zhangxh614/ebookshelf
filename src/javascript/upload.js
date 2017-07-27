@@ -1,4 +1,5 @@
 $(function() {
+
 	var handler = {
 		init: function() {
 			handler.addEventListeners();
@@ -97,7 +98,7 @@ $(function() {
 		},
 
 		dbDelete: function() {
-			let elem = getElementById('result');
+			let elem = document.getElementById('result');
 			while (elem.hasChildNodes()) {
 				elem.removeChild(elem.firstChild);
 			}
