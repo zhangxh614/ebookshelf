@@ -25,7 +25,7 @@ var add = async(ctx, next) => {
                         ctx.response.body = retMsg('dbfailed');
                     } else {
                         console.log(`successfully saved user ${newUser}`);
-                        ctx.response.body = retmsg('success');
+                        ctx.response.body = retMsg('success');
                     }
                 });
             }
