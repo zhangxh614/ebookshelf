@@ -33,7 +33,7 @@ $(function () {
 					alert("Not code in the picture.");
 				} else if (result.codeResult) {
 					var json = '{"isbn": "' + result.codeResult.code + '"}';
-					console.log(json);
+					self.dbDelete();
 					self.handleData(json);
 				} else {
 					alert("Not detected");
@@ -64,63 +64,70 @@ $(function () {
 				method: "POST",
 				body: json,
 				headers: {
-    				"Content-Type": "application/json"
-  				}
+					"Content-Type": "application/json"
+				}
 			}).then(function (resq) {
 				//alert(res);
-				resq.json().then(function(res){
-				ReactDOM.render(React.createElement(
-					"div",
-					null,
-					React.createElement(
-						"article",
-						{ className: "post" },
+				var res = resq.json().then(function (res) {
+					ReactDOM.render(React.createElement(
+						"div",
+						null,
 						React.createElement(
-							"h4",
-							{ className: "post-title" },
-							res['name']
+							"article",
+							{ className: "post" },
+							React.createElement(
+								"h4",
+								{ className: "post-title" },
+								res['name']
+							),
+							React.createElement("img", { className: "post-photo", src: res['images'][0]['img'] }),
+							React.createElement(
+								"p",
+								{ className: "post-info" },
+								res['info']
+							),
+							React.createElement(
+								"p",
+								{ className: "post-intro" },
+								res['intro']
+							),
+							React.createElement(
+								"strong",
+								{ className: "post-number" },
+								res['rating_num']
+							)
 						),
-						React.createElement("img", { className: "post-photo", src: res['images'][0]['img'] }),
 						React.createElement(
-							"p",
-							{ className: "post-info" },
-							res['info']
+							"h3",
+							{ className: "subtitle" },
+							"\u76F8\u5173\u4E66\u7C4D"
 						),
 						React.createElement(
-							"p",
-							{ className: "post-intro" },
-							res['intro']
-						),
-						React.createElement(
-							"strong",
-							{ className: "post-number" },
-							res['rating_num']
+							"ul",
+							{ className: "post-list" },
+							res['recommend'].map(function (item) {
+								return React.createElement(
+									"li",
+									{ className: "col-sm-6 col-md-4 col-lg-3" },
+									React.createElement("img", { className: "other", src: item['img'] }),
+									React.createElement(
+										"a",
+										{ className: "link", href: item['link'] },
+										item['name']
+									)
+								);
+							})
 						)
-					),
-					React.createElement(
-						"h3",
-						{ className: "subtitle" },
-						"\u76F8\u5173\u4E66\u7C4D"
-					),
-					React.createElement(
-						"ul",
-						{ className: "post-list" },
-						res['recommend'].map(function (item) {
-							return React.createElement(
-								"li",
-								{ className: "col-sm-6 col-md-4 col-lg-3" },
-								React.createElement("img", { className: "other", src: item['img'] }),
-								React.createElement(
-									"a",
-									{ className: "link", href: item['link'] },
-									item['name']
-								)
-							);
-						})
-					)
-				), document.getElementById('result'));									
-				})
+					), document.getElementById('result'));
+				});
 			});
+		},
+
+		dbDelete: function dbDelete() {
+			var elem = getElementById('result');
+			while (elem.hasChildNodes()) {
+				elem.removeChild(elem.firstChild);
+			}
 		}
 
 	};

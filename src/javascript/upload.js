@@ -32,6 +32,7 @@ $(function() {
 					alert("Not code in the picture.");
 				} else if (result.codeResult) {
 					let json = '{"isbn": "' + result.codeResult.code + '"}';
+					self.dbDelete();
 					self.handleData(json);
 				} else {
 					alert("Not detected");
@@ -62,14 +63,15 @@ $(function() {
 					method: "POST",
 					body: json,
 					headers: {
-    					"Content-Type": "application/json"
-  					}
+						"Content-Type": "application/json"
+					}
 				})
 				.then(function(resq) {
 					//alert(res);
 					var res = resq.json().then(function(res) {
-					ReactDOM.render(
-						<div>
+						ReactDOM.render(
+							<div>
+
 								<article className="post">
 									<h4 className="post-title">{res['name']}</h4>
 									<img className="post-photo" src={res['images'][0]['img']}/>
@@ -88,10 +90,17 @@ $(function() {
 								}
 								</ul>
 						</div>,
-						document.getElementById('result')
-					);	
+							document.getElementById('result')
+						);
 					});
 				});
+		},
+
+		dbDelete: function() {
+			let elem = getElementById('result');
+			while (elem.hasChildNodes()) {
+				elem.removeChild(elem.firstChild);
+			}
 		}
 
 
