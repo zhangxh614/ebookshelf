@@ -1,6 +1,8 @@
 
 const mongoose = require('mongoose');
 
+mongoose.Promise = global.Promise;
+
 var db = mongoose.createConnection('localhost', 'userdb');
 
 db.on('error', function(error) {

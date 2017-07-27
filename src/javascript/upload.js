@@ -60,7 +60,7 @@ $(function() {
 		},
 
 		handleData: function(json) {
-			fetch("/crawl", {
+			fetch("/api/crawl", {
 					method: "POST",
 					body: json,
 					headers: {
@@ -69,7 +69,7 @@ $(function() {
 				})
 				.then(function(resq) {
 					//alert(res);
-					var res = resq.json().then(function(res) {
+					resq.json().then(function(res) {
 						ReactDOM.render(
 							<div>
 
@@ -83,9 +83,9 @@ $(function() {
 									<h3 className="subtitle">相关书籍</h3>
 								<ul className="post-list">{
 									res['recommend'].map(function(item) {
-										return <li className="col-sm-6 col-md-4 col-lg-3">
+										return <li className="col-xs-6 col-md-4 col-lg-3">
 													<img className="other" src={item['img']}/>
-													<a className="link" href={item['link']}>{item['name']}</a>
+													<a className="link" target = "_blank" href={item['link']}>{item['name']}</a>
 												</li>
 									})
 								}

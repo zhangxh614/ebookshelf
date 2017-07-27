@@ -21,6 +21,9 @@ function ResponceStatic(url, dir) { // 接受一个查找起始路径, 以及查
     return (async (ctx, next) => { 
         var reqPath = ctx.request.path;
         // console.log(ctx.request.path);
+        if(reqPath.startsWith('api')){
+            await next();
+        }
         if(reqPath.substring(0, url.length) === url) { // 在搜索路径下
             var absolutePath = dir + reqPath;
             // 解析ctx.request中的url，判断文件类型，读取文件为字符串，返回

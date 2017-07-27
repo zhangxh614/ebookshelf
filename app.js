@@ -29,10 +29,7 @@ app.use(templating('./', { // 为了能够调用render向模板中喂数据的�
 }));
 
 router.get("/", async(ctx, next) => { // router中间件注册'GET /'请求
-    ctx.render('main.html', {
-        title: "ebookshelf",
-        introduction: "this is the info got from claw"
-    });
+    ctx.render('main.html');
 });
 
 require('./server/register_router')(router, 'route/');
@@ -43,5 +40,5 @@ app.use(router.routes());
 
 app.use(ResponseStatic('\/', __dirname)); // 添加响应'GET css/js'请求的中间件
 
-app.listen(3000);
-console.log('app started at port 3000...');
+app.listen(8000);
+console.log('app started at port 8000...');

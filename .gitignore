@@ -1,4 +1,8 @@
 node_modules
+
+build
+
 *.orig
+
 *.swp
 build

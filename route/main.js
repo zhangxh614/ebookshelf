@@ -37,4 +37,4 @@ var getCrawledData = async (ctx, next) => { // 响应post的json数据{"isbn":nu
     }
 }
 
-module.exports = {/*"GET /": mainPage,*/"POST /crawl": getCrawledData};
+module.exports = {/*"GET /": mainPage,*/"POST /api/crawl": getCrawledData};
