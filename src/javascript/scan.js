@@ -136,9 +136,9 @@ $(function() {
 									})
 								}
 								</ul>
-						</div>,
+							</div>,
 							document.getElementById('result')
-						)
+						);
 					});
 				})
 		},
