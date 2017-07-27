@@ -1,6 +1,6 @@
 var handleClick = function(username, pwd, method) {
 	let data = "{\"userName\":\"" + username + "\",\"pswd\":\"" + pwd + "\"}";
-	let url='/db/'+method;
+	let url = '/db/' + method;
 	fetch(url, {
 			method: 'POST',
 			headers: {
@@ -10,6 +10,9 @@ var handleClick = function(username, pwd, method) {
 			body: data
 		})
 		.then(function(data) {
+			if (data['msg'] === 'success') {
+				document.getElementById('avatar').style.display = 'block';
+			}
 			alert(data);
 		});
 };
@@ -17,11 +20,11 @@ var handleClick = function(username, pwd, method) {
 document.getElementById("login-submit").addEventListener('click', function(e) {
 	var loginName = $("input[name='login-name']").val();
 	var password = $("input[name='login-pwd']").val();
-	handleClick(loginName, password,'login');
+	handleClick(loginName, password, 'login');
 });
 
 document.getElementById('add-submit').addEventListener('click', function(e) {
 	var loginName = $("input[name='add-name']").val();
 	var password = $("input[name='add-pwd']").val();
-	handleClick(loginName, password,'add');
+	handleClick(loginName, password, 'add');
 });
