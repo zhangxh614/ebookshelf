@@ -1,17 +1,20 @@
-var handleClick = function(username, pwd, method) {
-	let data = "{\"userName\":\"" + username + "\",\"pswd\":\"" + pwd + "\"}";
-	let url='/db/'+method;
+var handleClick = function(username, pwd, _method) {
+	let data = "{\"usrName\":\"" + username + "\",\"pswd\":\"" + pwd + "\"}";
+	let url='/api/db/'+_method;
 	fetch(url, {
-			method: 'POST',
+			method: "POST",
+			body: data,
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
-			},
-			body: data
+			}
 		})
-		.then(function(data) {
-			alert(data);
+	.then(function(resp) {
+		resp.json().then(function(msg){
+			console.log(msg);
+			alert(msg);
 		});
+	});
 };
 
 document.getElementById("login-submit").addEventListener('click', function(e) {

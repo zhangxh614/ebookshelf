@@ -9,7 +9,7 @@
 	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="./src/css/main.css" />
-	<link rel="stylesheet" type="text/css" href="./src/css/_main.css" />
+	<link rel="stylesheet" type="text/css" href="./src/css/common.css" />
 	<script src="https://cdn.bootcss.com/react/15.6.1/react.min.js"></script>
 	<script src="https://cdn.bootcss.com/react/15.6.1/react-dom.min.js"></script>
 	<script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
@@ -53,15 +53,33 @@
 	<section id="mainpage" class="content-wrap">
 		<div class="container">
 			<div class="row">
-				<main class="col-md-7 text-center text-md-left main-content">
-					<div class="intro">
-						<h3 class="subtitle">Introduction</h3>
-						<div class="intro">
-								<img src="./image/intro1.jpg" alt="介绍1"/>
+				<main class="col-md-7 main-content">
+					<div class="intro flex-items-center flex-row-reverse">
+						<div class="col-sm-8 col-md-6  text-center">
+							<img id="intro-photo1" src="./image/intro1.jpg" alt="介绍1" />
+						</div>
+						<div class="col-sm-8 col-md-6 ">
+							<p id="intro-text1">12345</p>
+						</div>
+					</div>
+					<div class="intro d-md-flex flex-items-center">
+						<div class="col-sm-8 col-md-6  text-center">
+							<img id="intro-photo2" src="./image/intro2.jpg" alt="介绍1" />
+						</div>
+						<div class="col-sm-8 col-md-6  text-center text-md-right">
+							<p id="intro-text2">12345</p>
+						</div>
+					</div>
+					<div class="intro d-md-flex flex-items-center flex-row-reverse">
+						<div class="col-sm-8 col-md-6  text-center">
+							<img id="intro-photo3" src="./image/intro3.jpg" alt="介绍1" />
+						</div>
+						<div class="col-sm-8 col-md-6  text-center text-md-right">
+							<p id="intro-text3">12345</p>
 						</div>
 					</div>
 				</main>
-				<aside class="mx-auto col-sm-8 col-md-5 hide-sm rounded-1 bg-gray-light pt-4 pb-5 sidebar">
+				<aside class="col-sm-8 col-md-5 sidebar">
 					<div class="widget">
 						<h2 class="title">换一种图书管理的方式</h2>
 						<div class="content ">
@@ -105,12 +123,11 @@
 			</div>
 		</div>
 	</section>
-
 	<a href="#top" id="back-to-top">
 			<i class="fa fa-angle-up"></i>
 	</a>
 	<script type="text/javascript" src="./build/main.js"></script>
-	<script type="text/javascript" src="./build/_main.js"></script>
+	<script type="text/javascript" src="./build/common.js"></script>
 </body>
 
 </html>
