@@ -1,5 +1,5 @@
-var handleClick = function(username,pwd) {
-	let data = "{\"userName\":\""+username+"\",\"pswd\":\""+pwd+"\"}";
+var handleClick = function(username, pwd) {
+	let data = "{\"userName\":\"" + username + "\",\"pswd\":\"" + pwd + "\"}";
 	fetch('/db/login', {
 			method: 'POST',
 			headers: {
@@ -10,11 +10,17 @@ var handleClick = function(username,pwd) {
 		})
 		.then(function(data) {
 			alert(data);
-		})
+		});
 };
 
 document.getElementById("login-submit").addEventListener('click', function(e) {
-			var loginName = $("input[name='login-name']").val();
-			var password = $("input[name='pwd']").val();	
-			handleClick(loginName,password);
+	var loginName = $("input[name='login-name']").val();
+	var password = $("input[name='login-pwd']").val();
+	handleClick(loginName, password);
+});
+
+document.getElementById('add-submit').addEventListener('click', function(e) {
+	var loginName = $("input[name='add-name']").val();
+	var password = $("input[name='add-pwd']").val();
+	handleClick(loginName, password);
 });

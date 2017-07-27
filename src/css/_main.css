@@ -1,0 +1,24 @@
+.sidebar .widget {
+        background: #ffffff;
+        padding: 21px 30px;
+        margin-bottom: 35px;
+		width:100%;
+}
+
+.widget .title {
+        margin-top: 0;
+        padding-bottom: 7px;
+        border-bottom: 1px solid #ebebeb;
+        margin-bottom: 21px;
+        position: relative;
+}
+
+.widget .title:after {
+        content: "";
+        width: 90px;
+        height: 1px;
+        background: lightblue;
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+}

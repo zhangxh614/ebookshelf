@@ -143,16 +143,16 @@ h3.subtitle {
         position: fixed;
         right: 10px;
         bottom: 10px;
-        background: rgba(230, 126, 34, 0.6);
+        background: rgba(173, 216, 230, 0.6);
         color: #ffffff;
         text-align: center;
         border-radius: 2px;
         z-index: 1;
-        display: none;
+		display:none;
 }
 
 #back-to-top:hover {
-        background: #e67e22;
+        background: #96c7f8;
 }
 
 #back-to-top i {
