@@ -1,4 +1,5 @@
 $(function() {
+
 	var handler = {
 		init: function() {
 			handler.addEventListeners();

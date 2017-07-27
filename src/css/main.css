@@ -14,6 +14,7 @@ body {
 }
 
 
+
 /* header */
 
 .head {
@@ -28,6 +29,7 @@ body {
         background-size: cover;
         background-image: url(../../image/background.jpg)
 }
+
 
 
 /* tab */
@@ -72,6 +74,7 @@ body {
 }
 
 
+
 /* navbar-header */
 
 .navbar-header {
@@ -84,6 +87,7 @@ body {
         font-size: 2em;
         cursor: pointer;
 }
+
 
 
 /* controls&result */
@@ -104,6 +108,7 @@ h3.subtitle {
                 margin-bottom: 10px;
         }
 }
+
 
 
 /* result bar */
@@ -129,4 +134,29 @@ h3.subtitle {
         #result .post-list li {
                 height: auto;
         }
+}
+
+
+/* back-to-top */
+
+#back-to-top {
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+        background: rgba(230, 126, 34, 0.6);
+        color: #ffffff;
+        text-align: center;
+        border-radius: 2px;
+        z-index: 1;
+        display: none;
+}
+
+#back-to-top:hover {
+        background: #e67e22;
+}
+
+#back-to-top i {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
 }
