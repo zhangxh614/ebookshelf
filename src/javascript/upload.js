@@ -31,7 +31,7 @@ $(function() {
 				if (result === undefined) {
 					alert("Not code in the picture.");
 				} else if (result.codeResult) {
-					let json = '{\"ISBN\":\"' + result.codeResult.code + '\"}';
+					let json = '{"isbn": "' + result.codeResult.code + '"}';
 					self.handleData(json);
 				} else {
 					alert("Not detected");
@@ -60,10 +60,14 @@ $(function() {
 		handleData: function(json) {
 			fetch("/crawl", {
 					method: "POST",
-					body: json
+					body: json,
+					headers: {
+    					"Content-Type": "application/json"
+  					}
 				})
-				.then(function(res) {
+				.then(function(resq) {
 					//alert(res);
+					var res = resq.json().then(function(res) {
 					ReactDOM.render(
 						<div>
 								<article className="post">
@@ -85,7 +89,8 @@ $(function() {
 								</ul>
 						</div>,
 						document.getElementById('result')
-					)
+					);	
+					});
 				});
 		}
 

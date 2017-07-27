@@ -32,7 +32,8 @@ $(function () {
 				if (result === undefined) {
 					alert("Not code in the picture.");
 				} else if (result.codeResult) {
-					var json = '{\"ISBN\":\"' + result.codeResult.code + '\"}';
+					var json = '{"isbn": "' + result.codeResult.code + '"}';
+					console.log(json);
 					self.handleData(json);
 				} else {
 					alert("Not detected");
@@ -61,9 +62,13 @@ $(function () {
 		handleData: function handleData(json) {
 			fetch("/crawl", {
 				method: "POST",
-				body: json
-			}).then(function (res) {
+				body: json,
+				headers: {
+    				"Content-Type": "application/json"
+  				}
+			}).then(function (resq) {
 				//alert(res);
+				resq.json().then(function(res){
 				ReactDOM.render(React.createElement(
 					"div",
 					null,
@@ -113,7 +118,8 @@ $(function () {
 							);
 						})
 					)
-				), document.getElementById('result'));
+				), document.getElementById('result'));									
+				})
 			});
 		}
 
