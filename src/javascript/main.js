@@ -1,20 +1,21 @@
+
 var handleClick = function(username, pwd, method) {
-	let data = "{\"userName\":\"" + username + "\",\"pswd\":\"" + pwd + "\"}";
-	let url = '/db/' + method;
+	console.log(username, pwd);
+	let data = "{\"usrName\":\"" + username + "\",\"pswd\":\"" + pwd + "\"}";
+	let url = '/api/db/' + method;
 	fetch(url, {
 			method: 'POST',
+			body: data,
 			headers: {
-				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			},
-			body: data
-		})
-		.then(function(data) {
-			if (data['msg'] === 'success') {
-				document.getElementById('avatar').style.display = 'block';
-			}
-			alert(data);
-		});
+		}).then(function(resp) {
+		return resp.json();
+	}).then(function(res){
+		if(res.msg === 'success') {
+			document.getElementById('avatar').style.display = "block";
+		}
+	});
 };
 
 document.getElementById("login-submit").addEventListener('click', function(e) {
