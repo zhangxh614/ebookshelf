@@ -1,4 +1,4 @@
-const UserModel = require('./server/usermodel');
+const UserModel = require('../server/usermodel');
 
 var add = async(ctx, next) => {
     var newUser = new UserModel(ctx.request.body);
