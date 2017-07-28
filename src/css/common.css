@@ -67,9 +67,9 @@ body {
 }
 
 #avatar {
-        margin-top: 15px;
+	line-height: 4em;
         float: right;
-		display:none;
+	display:none;
 }
 
 @media (max-width: 767px) {
@@ -83,7 +83,7 @@ body {
                 float: none;
                 margin-top: 0;
                 line-height: 4em;
-                padding: 0 21px;
+                padding: 0 21px 0 0;
         }
 }
 
