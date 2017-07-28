@@ -2,21 +2,22 @@
 
 #### 作者
 
-张子薇 2016011276 钮泽平
+张子薇 2016011276 钮泽平 2015010467
 
 #### 发布链接
 
-主机ip:123.206.179.98, 端口8000
+主机ip:[123.206.179.98][1], 端口8000, 日常运行中
 
-（ebookshelf.cn域名未进行备案，不知道哪天备案通过了就可以访问……）
+- firefox可以通过确认调用摄像头，chrome需要https协议，目前
+  ebookshelf.cn域名未进行备案，不知道哪天备案通过了就可以访问……
 
 ##### Github Pages:
 
-[Ebookshelf][1]
+[Ebookshelf][2]
 
-可查看实时扫描功能，但未链接服务器，不能爬取书籍信息。
+chrome也可以查看实时扫描功能，但未链接我们的服务器，不能爬取书籍信息。
 
-\##选题背景
+## 选题背景
 
 个人的纸质书籍可能太多太乱太杂，希望有一个高效的方法能对其进行统计管理。
 
@@ -52,9 +53,9 @@ PC端采用三栏布局的格式，左侧为控制条，包含控制拍照的按
 
 **由于时间原因只做了展示界面但未链接数据库**，目前显示的书目是以json格式写死在文件内的。
 
-> 使用的开源框架：[Bootstrap][2]
+> 使用的开源框架：[Bootstrap][4]
 >
-> 参考的网站：[GitHub首页][3]
+> 参考的网站：[GitHub首页][5]
 
 #### 前端功能实现
 
@@ -64,9 +65,9 @@ PC端采用三栏布局的格式，左侧为控制条，包含控制拍照的按
 
 ##### 一维码扫描
 
-`src/javascript/scan.js`,`src/javascript/upload.js` 分别具有`handler`类用于配置并解析一维码，主要调用开源代码库[quaggaJS][4]。目前设置只解析标准13位EAN码，其余格式的一维码无法解析。实现了在前端直接解析一维码的功能。扫描完毕后只向后端传递ISBN码。
+`src/javascript/scan.js`,`src/javascript/upload.js` 分别具有`handler`类用于配置并解析一维码，主要调用开源代码库[quaggaJS][6]。目前设置只解析标准13位EAN码，其余格式的一维码无法解析。实现了在前端直接解析一维码的功能。扫描完毕后只向后端传递ISBN码。
 
-> 使用的开源库：[quaggaJS][4]
+> 使用的开源库：[quaggaJS][7]
 
 ##### 数据传递
 
@@ -74,9 +75,9 @@ PC端采用三栏布局的格式，左侧为控制条，包含控制拍照的按
 
 ##### 结果展示
 
-`src/javascript/scan.js`,`src/javascript/upload.js` 利用`handleData`函数处理服务器传回来的数据并展示给用户，利用[React][5]框架更加方便的管理。由于推荐书目的图片大小不一且清晰度较差，利用[Bootstrap][2]进行了分栏并且动态的适配移动端。
+`src/javascript/scan.js`,`src/javascript/upload.js` 利用`handleData`函数处理服务器传回来的数据并展示给用户，利用[React][8]框架更加方便的管理。由于推荐书目的图片大小不一且清晰度较差，利用[Bootstrap][9]进行了分栏并且动态的适配移动端。
 
-> 使用的开源框架：[Bootstrap][2],[React][5]
+> 使用的开源框架：[Bootstrap][10],[React][11]
 
 ### 后端服务
 
@@ -84,7 +85,40 @@ PC端采用三栏布局的格式，左侧为控制条，包含控制拍照的按
 
 利用Python实现的简易爬虫，能通过ISBN码爬取对应书籍的信息。
 
-> 使用的库：[Beautiful Soup][6],[urllib2][7]
+> 使用的库：[Beautiful Soup][12],[urllib2][13]
+
+##### 服务器程序
+
+使用nodejs后端框架[koa2][14]进行服务端开发，编写路由解析，动态网页请求响应。
+
+子进程中调用python程序进行信息爬取，包装成json返回客户端。
+> 使用中间件：
+> - `koa-bodyparser` 用于预处理post请求;
+> - `koa-router`实现请求和处理方法的关联;
+
+> 使用包：
+> - `mime`用于获取请求静态资源类型;
+> - `numjucks`用于给koa的conntext请求配置render方法以返回动态渲染的页面;
+
+
+##### 数据库连接
+
+使用mongoose连接数据库，实现了一个简单的用户信息维护，响应前端对服务器的注册登陆请求。
+
+> 使用了：开源库[mongoose][15]. 文档型数据库：[mongdb][16]
+
+##### 服务端部署
+
+数据库和服务器程序已经部署在腾讯云主机上，使用nodejs进程管理工具pm2实现其日常运行。
+
+## 本地测试，安装部署方法：
+
+- 首先安装mongodb，监听默认端口27017并运行
+- 安装npm包管理工具，后面的操作在8.x版本下运行通过
+- 在根目录下使用`npm install`自动化安装依赖包
+- 运行`npm run compile`将网页js文件进行babel转换
+- 启动`node ./app.js` 运行服务
+- 本地localhost:8000即可访问
 
 ## 遇到的困难
 
@@ -100,6 +134,14 @@ PC端采用三栏布局的格式，左侧为控制条，包含控制拍照的按
 
 -   对于前端开发和各种框架一无所知……
 
+-   前后端交互的各种bug，中间件的编写和前端响应都需要js的异步语法，对js异步语法和中间件工作原理知之甚少给调试server增加了很大困难。不过好在最后server终于相对稳定了
+
+-   之前从未接触过的后端koa框架，mongodb数据库使用，将server应用部署到远程服务器
+
+-   babel和npm的设置与使用也耗费了我们不小时间与精力
+
+-   https问题，以及域名申请后还需要极为繁杂的备案......
+
     解决：各种学……
 
 ## 心得感言
@@ -114,16 +156,20 @@ PC端采用三栏布局的格式，左侧为控制条，包含控制拍照的按
 
 从入门到最后完成大作业，感谢助教大大和各位老师对我们的指导和帮助O(∩\_∩)O\~~
 
-[1]: https://zhangxh614.github.io/ebookshelf/main.html
 
-[2]: http://www.bootcss.com/
-
-[3]: https://github.com/
-
-[4]: https://github.com/serratus/quaggaJS
-
-[5]: https://facebook.github.io/react/
-
-[6]: https://www.crummy.com/software/BeautifulSoup/
-
-[7]: https://docs.python.org/2/library/urllib2.html
+  [1]: http://123.206.179.98:8000/
+  [2]: https://zhangxh614.github.io/ebookshelf/main.html
+  [3]: https://github.com/
+  [4]: http://www.bootcss.com/
+  [5]: https://github.com/
+  [6]: https://github.com/serratus/quaggaJS
+  [7]: https://github.com/serratus/quaggaJS
+  [8]: https://facebook.github.io/react/
+  [9]: http://www.bootcss.com/
+  [10]: http://www.bootcss.com/
+  [11]: https://facebook.github.io/react/
+  [12]: https://www.crummy.com/software/BeautifulSoup/
+  [13]: https://docs.python.org/2/library/urllib2.html
+  [14]: http://koajs.com/
+  [15]: http://mongoosejs.com/
+  [16]: https://www.mongodb.com/
