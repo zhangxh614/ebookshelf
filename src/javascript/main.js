@@ -14,6 +14,7 @@ var handleClick = function(username, pwd, method) {
 	}).then(function(res){
 		if(res.msg === 'success') {
 			document.getElementById('avatar').style.display = "block";
+			alert(res.meg);
 		}
 	});
 };
