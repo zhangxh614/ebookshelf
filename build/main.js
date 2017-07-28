@@ -1,20 +1,21 @@
 "use strict";
 
 var handleClick = function handleClick(username, pwd, method) {
-	var data = "{\"userName\":\"" + username + "\",\"pswd\":\"" + pwd + "\"}";
-	var url = '/db/' + method;
+	console.log(username, pwd);
+	var data = "{\"usrName\":\"" + username + "\",\"pswd\":\"" + pwd + "\"}";
+	var url = '/api/db/' + method;
 	fetch(url, {
 		method: 'POST',
+		body: data,
 		headers: {
-			'Accept': 'application/json',
 			'Content-Type': 'application/json'
-		},
-		body: data
-	}).then(function (data) {
-		if (data['msg'] === 'success') {
-			document.getElementById('avatar').style.display = 'block';
 		}
-		alert(data);
+	}).then(function (resp) {
+		return resp.json();
+	}).then(function (res) {
+		if (res.msg === 'success') {
+			document.getElementById('avatar').style.display = "block";
+		}
 	});
 };
 
