@@ -25,7 +25,7 @@ var add = async(ctx, next) => {
                         ctx.response.body = retMsg('dbfailed');
                     } else {
                         console.log(`successfully saved user ${newUser}`);
-                        ctx.response.body = retMsg('success');
+                        ctx.response.body = retMsg('register');
                     }
                 });
             }
@@ -40,7 +40,7 @@ var login = async(ctx, next) => {
     console.log(`request ${name}, ${_pswd}`);
     await UserModel.findOne({usrName: name, pswd: _pswd}, function(err, usr) {
         if (err) {
-            ctx.response.body = retMsg('DB ERROR');
+            ctx.response.body = retMsg('dbfailed');
             ctx.response.status = 503;
             console.log(`database error when adding user`);
         } else {
