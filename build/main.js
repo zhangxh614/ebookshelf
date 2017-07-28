@@ -15,6 +15,17 @@ var handleClick = function handleClick(username, pwd, method) {
 	}).then(function (res) {
 		if (res.msg === 'success') {
 			document.getElementById('avatar').style.display = "block";
+			alert('login success');
+		} else if (res.msg === 'wrong') {
+			alert('wrong user name or password');
+		} else if (res.msg === 'register') {
+			alert('register success');
+		} else if (res.msg === 'used') {
+			alert('user name used');
+		} else if (res.msg === 'dbfailed') {
+			console.log('error in database');
+		} else {
+			console.log('known error');
 		}
 	});
 };
